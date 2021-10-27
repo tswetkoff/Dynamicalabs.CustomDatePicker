@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="Dynamicalabs.CustomDatePicker" constructor="DynamicalabsCustomDatePicker" version="0.0.1" display-name-key="DynamicalabsCustomDatePicker" description-key="DynamicalabsCustomDatePicker description" control-type="standard">
+    <property name="Field"  display-name-key="Field" description-key="field_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="DateFormat" display-name-key="Date Format" description-key="Please select date format" of-type="Enum" usage="input" required="true" default-value="0">
+      <value name="YYYY-MM" display-name-key="YYYY-MM" description-key="YYYY-MM">0</value>
+      <value name="MM/DD" display-name-key="MM/DD" description-key="MM/DD">1</value>
+    </property>
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/dnlSaleDateDropdowns.css" order="1" />
+    </resources>
+  </control>
+</manifest>

@@ -1,0 +1,22 @@
+.dnl-first-select{
+    width: 50px;
+    border: 1px solid transparent;
+    appearance: none;
+    height: 35px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.dnl-second-select{
+    width: 75px;
+    border: 1px solid transparent;
+    appearance: none;
+    height: 35px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.dnl-first-select:hover, .dnl-second-select:hover{
+    border: 1px solid rgb(133, 133, 133);
+    appearance: auto;
+}
