@@ -11,6 +11,7 @@ Picklist styles are similar to OOB.
 There are 2 available options:
   - YYYY-MM - to display 2 picklists (Month and Year) and store the selected value in "YYYY-MM" format 
   - MM/DD - to display 2 picklists (Month (Jan..Dec) and Day (1..31)) and store the selected value in "MM/DD" format 
+
 ![alt-text](https://github.com/tswetkoff/Dynamicalabs.CustomDatePicker/blob/master/media/DateFormatProperty.jpg?raw=true "Date Format Property")
 
 
