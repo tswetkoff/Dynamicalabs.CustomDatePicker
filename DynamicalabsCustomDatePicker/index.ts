@@ -25,6 +25,7 @@ export class DynamicalabsCustomDatePicker implements ComponentFramework.Standard
 	{
 		this.context = context;
 		this.container = container;
+        this.container.classList.add("dnl-option-container", "dnl-option-container-ma-picklist");
 		this.baseDate = context.parameters.Field.raw && context.parameters.Field.raw.length ? context.parameters.Field.raw : "";
 		this.dateFormat = context.parameters.DateFormat.raw && context.parameters.DateFormat.raw.length ? context.parameters.DateFormat.raw : "";
 
@@ -43,7 +44,7 @@ export class DynamicalabsCustomDatePicker implements ComponentFramework.Standard
 
 		this.daySelectValues = ["---", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
 		this.monthSelectValues = { "---": "0", "Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12" };
-		this.yearSelectValues = ["---", "2031", "2030", "2029", "2028", "2027", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990"];
+        this.yearSelectValues = this.buildYearArray(context);
 
 		this.InitFirstDropdown();
 		this.InitSecondDropdown();
@@ -52,7 +53,7 @@ export class DynamicalabsCustomDatePicker implements ComponentFramework.Standard
 	private InitFirstDropdown() {
 		let context = this;
 		this.firstSelectElement = document.createElement("select");
-		this.firstSelectElement.classList.add("dnl-first-select");
+		this.firstSelectElement.classList.add("dnl-sale-date-select", "dnl-first-select");
 
 		Object.keys(this.monthSelectValues).forEach(function (el) {
 			context.firstSelectElement.add(new Option(el));
@@ -68,7 +69,7 @@ export class DynamicalabsCustomDatePicker implements ComponentFramework.Standard
 	private InitSecondDropdown() {
 		let context = this;
 		this.secondSelectElement = document.createElement("select");
-		this.secondSelectElement.classList.add("dnl-second-select");
+		this.secondSelectElement.classList.add("dnl-sale-date-select", "dnl-second-select");
 
 		switch (this.dateFormat) {
 			case "0": //YYYY-MM
@@ -136,6 +137,45 @@ export class DynamicalabsCustomDatePicker implements ComponentFramework.Standard
 			this.secondSelectElement.remove(i);
 		}
 	}
+
+    private buildYearArray(context: ComponentFramework.Context<IInputs>): Array<string> {
+        let startYearStr = context.parameters.StartYear?.raw?.trim() || "";
+        let startYear = startYearStr ? parseInt(startYearStr, 10) : 1990;
+
+        let endYearStr = context.parameters.EndYear?.raw?.trim() || "";
+        let currentYear = new Date().getFullYear();
+        let endYear = endYearStr ? parseInt(endYearStr, 10) : (currentYear + 5);
+
+        if (isNaN(startYear) || startYear < 1000 || startYear > 9999) {
+            startYear = 1990;
+        }
+        if (isNaN(endYear) || endYear < 1000 || endYear > 9999) {
+            endYear = currentYear + 5;
+        }
+
+        if (startYear > endYear) {
+            let temp = startYear;
+            startYear = endYear;
+            endYear = temp;
+        }
+
+        let years: Array<string> = ["---"];
+        for (let year = startYear; year <= endYear; year++) {
+            years.push(year.toString());
+        }
+
+        let yearOrder = context.parameters.YearOrder?.raw || "Desc";
+
+        if (yearOrder === "Asc") {
+            let yearValues = years.slice(1).sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+            years = ["---", ...yearValues];
+        } else {
+            let yearValues = years.slice(1).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
+            years = ["---", ...yearValues];
+        }
+
+        return years;
+    }
 
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
