@@ -7,12 +7,22 @@ Picklist styles are similar to OOB.
 
 **Properties:**
 * Field (required) - a text field that is used to store the data
-* Date Format (required) - defines the mode the current control will display and store the data.\
-There are 2 available options:
-  - YYYY-MM - to display 2 picklists (Month and Year) and store the selected value in "YYYY-MM" format 
-  - MM/DD - to display 2 picklists (Month (Jan..Dec) and Day (1..31)) and store the selected value in "MM/DD" format 
+* Date Format (required) - defines the mode the current control will display and store the data.  
+  There are 2 available options:
+  - **YYYY-MM** - to display 2 picklists (Month and Year) and store the selected value in "YYYY-MM" format  
+
+    Additional options applicable for **YYYY-MM** format:  
+    * **Start Year** - Enter a value or leave blank for default.  
+      Default: 1990  
+    * **End Year** - Enter a value or leave blank for default.  
+      Default: current year + 5  
+    * **Year Order** - Select to sort years ascending or descending.
+
+  - **MM/DD** - to display 2 picklists (Month (Jan..Dec) and Day (1..31)) and store the selected value in "MM/DD" format
 
 ![alt-text](https://github.com/tswetkoff/Dynamicalabs.CustomDatePicker/blob/master/media/DateFormatProperty.jpg?raw=true "Date Format Property")
+
+![alt-text](https://github.com/tswetkoff/Dynamicalabs.CustomDatePicker/blob/master/media/Custom%20Date%20Picker%20Properties.jpg?raw=true "Custom Date Picker Properties")
 
 
 ![alt-text](https://static.wixstatic.com/media/3d222f_42a9d9ce4b234fb9a13b966eb3d83319~mv2.jpg/v1/fill/w_323,h_69,al_c,q_80,usm_0.66_1.00_0.01/Untitled%20(500%20x%20300%20px)_edited.webp)
